@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ChuckNorrisFact } from './chuck-norris-fact.model';
-import { faThumbsDown } from '../assets/fontawesome-free-5.0.13/advanced-options/use-with-node-js/fontawesome-free-regular';
 
 @Injectable({
   providedIn: 'root'
