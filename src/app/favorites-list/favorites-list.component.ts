@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChuckNorrisFact } from '../chuck-norris-fact.model';
+import { ChuckNorrisFact } from '../facts/chuck-norris-fact.model';
 import { UserListService } from '../user-list.service';
 
 @Component({

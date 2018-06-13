@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { ChuckNorrisFactsService } from '../chuck-norris-facts.service';
-import { ChuckNorrisFact } from '../chuck-norris-fact.model';
+import { ChuckNorrisFactsService } from '../facts/chuck-norris-facts.service';
+import { ChuckNorrisFact } from '../facts/chuck-norris-fact.model';
 import { UserListService } from '../user-list.service';
 
 @Component({
