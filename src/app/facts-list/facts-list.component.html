@@ -1,0 +1,30 @@
+<div class="list-container mt-2">
+  <div class="row">
+    <div class="col-sm well">
+        <form #searchForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="search(searchForm.value.searchKeyword)">
+            <input class="form-control mr-sm-2" name="searchKeyword" type="search" (ngModel)="searchKeyword" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+    </div>
+  </div>
+  
+  <table class="table table-striped mt-2">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fact</th>
+        <th scope="col">Favorite</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fact of facts; let i = index">
+        <th scope="row">{{ i + 1}}</th>
+        <td>{{ fact.value }}</td>
+        <td>
+          <button type="button" class="btn" [ngClass]="{'btn-primary': !fact.favorite, 'btn-danger': fact.favorite}" (click)="favorite(fact)">{{ fact.favorite ? 'Unfavorite' : 'Favorite'}}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,21 @@
+<h1>Favorite List</h1>
+<div *ngIf="favorites.length > 0">
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Fact</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fact of favorites; let i = index">
+          <th scope="row">{{ i + 1}}</th>
+          <td>{{ fact.value }}</td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="unfavorite(fact)">Unfavorite</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
