@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormControl, FormGroup } from "@angular/forms";
-import { UserAuthenticationService } from '../user-authentication.service';
+import { UserAuthenticationService } from '../user/user-authentication.service';
 
 interface UserCredentials {
   username: string, 
