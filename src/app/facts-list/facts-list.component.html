@@ -1,13 +1,35 @@
 <div class="list-container mt-2">
   <div class="row">
     <div class="col-sm well">
-        <form #searchForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="search(searchForm.value.searchKeyword)">
-            <input class="form-control mr-sm-2" name="searchKeyword" type="search" (ngModel)="searchKeyword" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+      <form #searchForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="search(searchForm.value.searchKeyword)">
+        <input class="form-control mr-sm-2" name="searchKeyword" type="search" (ngModel)="searchKeyword" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
+    <!-- Single button -->
+    <!-- <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Action
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="#">Action</a>
+        </li>
+        <li>
+          <a href="#">Another action</a>
+        </li>
+        <li>
+          <a href="#">Something else here</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a href="#">Separated link</a>
+        </li>
+      </ul>
+    </div> -->
   </div>
-  
+
   <table class="table table-striped mt-2">
     <thead>
       <tr>

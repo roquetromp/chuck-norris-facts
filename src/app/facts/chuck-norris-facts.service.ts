@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ChuckNorrisFact } from "./chuck-norris-fact.model";
-import { Observable, of} from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -10,15 +10,28 @@ const apiUrl = 'https://api.chucknorris.io/jokes';
   providedIn: 'root'
 })
 export class ChuckNorrisFactsService {
+  cachedFacts: ChuckNorrisFact[] = [];
 
   constructor(private http: HttpClient) { }
 
-  getFacts(count: number): Observable<ChuckNorrisFact> {
+  getFacts(count: number): Observable<ChuckNorrisFact[]> {
+    console.log(this.cachedFacts)
+    if (this.cachedFacts.length > 0) {
+      return of(this.cachedFacts.slice());
+    }
+    return this.getNewFacts(count);
 
-    return new Observable<ChuckNorrisFact>((observer) => {
+  }
 
+  getNewFacts(count: number): Observable<ChuckNorrisFact[]> {
+    this.cachedFacts = [];
+    
+    return new Observable<ChuckNorrisFact[]>((observer) => {
       for (let i = 0; i < count; i++) {
-        this.fetchRandomFact().subscribe(fact => observer.next(fact));
+        this.fetchRandomFact().subscribe(fact => {
+          this.cachedFacts.push(fact);
+          observer.next(this.cachedFacts.slice());
+        });
       }
     })
   }
@@ -27,11 +40,16 @@ export class ChuckNorrisFactsService {
     return this.fetchRandomFact();
   }
 
-  searchFact(keyword:string):Observable<any>{
+  searchFact(keyword: string): Observable<any> {
     return this.http.get<any>(`${apiUrl}/search?query=${keyword}`)
+      .pipe(tap(response => this.cachedFacts = response.result))
+  }
+  
+  getCategories():Observable<string[]>{
+    return this.http.get<string[]>(`${apiUrl}/categories`);
   }
 
-  private fetchRandomFact(): Observable<ChuckNorrisFact>{
+  private fetchRandomFact(): Observable<ChuckNorrisFact> {
     return this.http.get<ChuckNorrisFact>(apiUrl + '/random');
   }
 }

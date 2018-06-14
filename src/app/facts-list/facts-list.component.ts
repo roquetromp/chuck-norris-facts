@@ -21,7 +21,7 @@ export class FactsListComponent implements OnInit {
 
   ngOnInit() {
     this.chuckNorrisFactsService.getFacts(10)
-      .subscribe(fact => this.facts.push(fact))
+      .subscribe(facts => this.facts = facts)
   }
 
   favorite(fact: ChuckNorrisFact) {
