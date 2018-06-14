@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { UserAuthenticationService } from '../user/user-authentication.service';
 
 interface UserCredentials {
@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      username: new FormControl(),
-      password: new FormControl()
+      username: new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(5)]),
+      password: new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(8)])
     })
   }
 
@@ -31,6 +31,10 @@ export class LoginComponent implements OnInit {
     if(this.userAuthentication.authenticateUser(credentials)){
       this.router.navigate(['/facts']);
     }
+  }
+
+  cancel(): void {
+    this.router.navigate(['/facts']);
   }
 
 }

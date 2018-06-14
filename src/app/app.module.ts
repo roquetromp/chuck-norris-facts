@@ -9,6 +9,7 @@ import { FavoritesListComponent } from './favorites-list/favorites-list.componen
 import { NavigationMenuComponent } from './shared/navigation-menu/navigation-menu.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from './login/login.component';
+import { FavoritesListActivator } from './favorites-list/favorites-list.activator';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule
   ],
   providers: [ 
-    ChuckNorrisFactsService
+    ChuckNorrisFactsService,
+    FavoritesListActivator
   ],
   bootstrap: [AppComponent]
 })

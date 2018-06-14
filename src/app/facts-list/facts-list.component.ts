@@ -1,7 +1,9 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { ChuckNorrisFactsService } from '../facts/chuck-norris-facts.service';
 import { ChuckNorrisFact } from '../facts/chuck-norris-fact.model';
-import { UserListService } from '../user-list.service';
+import { FavoriteService } from '../favorites-list/favorite.service';
+import { UserAuthenticationService } from '../user/user-authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-facts-list',
@@ -11,7 +13,11 @@ import { UserListService } from '../user-list.service';
 export class FactsListComponent implements OnInit {
   facts: ChuckNorrisFact[] = [];
 
-  constructor(private chuckNorrisFactsService: ChuckNorrisFactsService, private userListService: UserListService) { }
+  constructor(
+    private chuckNorrisFactsService: ChuckNorrisFactsService,
+    private router: Router, 
+    private userAuthentication:UserAuthenticationService, 
+    private favoriteService: FavoriteService) { }
 
   ngOnInit() {
     this.chuckNorrisFactsService.getFacts(10)
@@ -19,17 +25,22 @@ export class FactsListComponent implements OnInit {
   }
 
   favorite(fact: ChuckNorrisFact) {
+    if(!this.userAuthentication.userIsLoggedIn()){
+      this.router.navigate(['/login']);
+      return;
+    }
+
     fact.favorite = !fact.favorite;
     if (fact.favorite) {
-      this.userListService.addFactToFavorites(fact);
+      this.favoriteService.addFactToFavorites(fact);
     } else {
-      this.userListService.removeFactFromFavorites(fact);
+      this.favoriteService.removeFactFromFavorites(fact);
     }
   }
 
   unfavorite(fact: ChuckNorrisFact) {
     fact.favorite = false;
-    this.userListService.removeFactFromFavorites(fact);
+    this.favoriteService.removeFactFromFavorites(fact);
   }
 
   search(searchKeyword: string){

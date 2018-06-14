@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserAuthenticationService } from '../../user/user-authentication.service';
 
 @Component({
   selector: 'app-navigation-menu',
@@ -8,12 +9,9 @@ import { Router } from '@angular/router';
 })
 export class NavigationMenuComponent implements OnInit {
 
-  constructor(public router:Router) { }
+  constructor(public userAuthentication: UserAuthenticationService) { }
 
   ngOnInit() {
 
   }
-
-
-
 }

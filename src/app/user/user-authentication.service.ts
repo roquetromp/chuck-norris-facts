@@ -9,14 +9,25 @@ interface User {
   providedIn: 'root'
 })
 export class UserAuthenticationService {
-  currentUser : User = { username: ''};
+  currentUser: User;
   constructor() { }
 
-  authenticateUser(user:UserCredentials):boolean{
+  authenticateUser(user: UserCredentials): boolean {
 
-    if(!user) return false;
+    if (!user) return false;
     //Easy login
-    this.currentUser.username = user.username;
-    return true;  
+    this.currentUser = {
+      username: user.username,
+      isLoggedIn: true
+    }
+    return true;
+  }
+
+  userIsLoggedIn(): boolean {
+    return (!!this.currentUser && this.currentUser.isLoggedIn);
+  }
+
+  logoutUser(): void {
+    this.currentUser = null;
   }
 }

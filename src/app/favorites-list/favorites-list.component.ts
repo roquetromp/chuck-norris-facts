@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChuckNorrisFact } from '../facts/chuck-norris-fact.model';
-import { UserListService } from '../user-list.service';
+import { FavoriteService } from './favorite.service';
 
 @Component({
   selector: 'app-favorites-list',
@@ -9,7 +9,7 @@ import { UserListService } from '../user-list.service';
 })
 export class FavoritesListComponent implements OnInit {
   favorites:ChuckNorrisFact[];
-  constructor(private userListService: UserListService) { }
+  constructor(private userListService: FavoriteService) { }
 
   ngOnInit() {
     this.updateFavoritesList();
