@@ -10,6 +10,8 @@ import { NavigationMenuComponent } from './shared/navigation-menu/navigation-men
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { FavoritesListActivator } from './favorites-list/favorites-list.activator';
+import { PascalcasePipe } from './common/pascalcase.pipe';
+import { FavoriteButtonComponent } from './shared/favorite-button/favorite-button.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { FavoritesListActivator } from './favorites-list/favorites-list.activato
     FactsListComponent,
     FavoritesListComponent,
     NavigationMenuComponent,
-    LoginComponent
+    LoginComponent,
+    PascalcasePipe,
+    FavoriteButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,3 @@
+<button type="button" class="btn" [ngClass]="{ 'btn-primary': !fact.favorite, 'btn-danger': fact.favorite }" (click)="favorite(fact)">
+  <i class="fa-star" [ngClass]="{ 'far' : !fact.favorite, 'fas': fact.favorite }"></i>
+</button>

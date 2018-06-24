@@ -6,26 +6,18 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
-    <div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Action
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li>
-          <a href="#">Action</a>
-        </li>
-        <li>
-          <a href="#">Another action</a>
-        </li>
-        <li>
-          <a href="#">Something else here</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a href="#">Separated link</a>
-        </li>
-      </ul>
+    <div class="col-sm">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Categories
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a (click)="getNewFacts()" class="dropdown-item">Random</a>
+          <div class="dropdown-divider"></div>
+          <a *ngFor="let category of categories" (click)="getNewFacts(undefined, category)" class="dropdown-item">{{category | pascalcase}}</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -42,8 +34,13 @@
         <th scope="row">{{ i + 1}}</th>
         <td>{{ fact.value }}</td>
         <td>
-          <button type="button" class="btn" [ngClass]="{'btn-primary': !fact.favorite, 'btn-danger': fact.favorite}" (click)="favorite(fact)">{{ fact.favorite ? 'Unfavorite' : 'Favorite'}}
-          </button>
+          <app-favorite-button [fact]="fact" (favoriteEvent)="favorite($event)"></app-favorite-button>
+          <!-- <button type="button" 
+          class="btn" 
+          [ngClass]="{'btn-primary': !fact.favorite, 'btn-danger': fact.favorite }" 
+          (click)="favorite(fact)">
+            <i class="fa-star" [ngClass]="{'far' : !fact.favorite, 'fas': fact.favorite}"></i>
+          </button> -->
         </td>
       </tr>
     </tbody>

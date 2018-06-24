@@ -5,15 +5,15 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Fact</th>
-          <th></th>
+          <th scope="col">Favorite</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let fact of favorites; let i = index">
-          <th scope="row">{{ i + 1}}</th>
+          <th scope="row">{{ i + 1 }}</th>
           <td>{{ fact.value }}</td>
           <td>
-            <button type="button" class="btn btn-danger" (click)="unfavorite(fact)">Unfavorite</button>
+              <app-favorite-button [fact]="fact" (favoriteEvent)="unfavorite($event)"></app-favorite-button>
           </td>
         </tr>
       </tbody>
