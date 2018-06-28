@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     //Validate form
 
     if(this.userAuthentication.authenticateUser(credentials)){
+
       this.router.navigate(['/facts']);
     }
   }
